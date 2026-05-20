@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>配達サービスを選ぶ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Fredoka+One&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #FF6B2B;
+      --yellow: #FFD84D;
+      --red: #FF3D3D;
+      --cream: #FFF8EE;
+      --warm-white: #FFFDF9;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--cream);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      overflow-x: hidden;
+    }
+
+    /* 背景の丸い装飾 */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -120px;
+      right: -80px;
+      width: 320px;
+      height: 320px;
+      background: var(--yellow);
+      border-radius: 50%;
+      opacity: 0.35;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -100px;
+      left: -60px;
+      width: 260px;
+      height: 260px;
+      background: var(--orange);
+      border-radius: 50%;
+      opacity: 0.18;
+      z-index: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 460px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .emoji-top {
+      font-size: 48px;
+      margin-bottom: 0.5rem;
+      display: block;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 28px;
+      color: var(--orange);
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.02em;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #b07040;
+      margin-bottom: 2.2rem;
+    }
+
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 1rem 1.2rem;
+      background: var(--warm-white);
+      border: 2px solid transparent;
+      border-radius: 18px;
+      text-decoration: none;
+      transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+      box-shadow: 0 3px 0 #f0d8b8;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 0 #f0d8b8;
+    }
+
+    .card:active {
+      transform: translateY(1px);
+      box-shadow: 0 1px 0 #f0d8b8;
+    }
+
+    .card.uber:hover   { border-color: #06c167; }
+    .card.demae:hover  { border-color: var(--red); }
+    .card.rocket:hover { border-color: var(--orange); }
+
+    .card-emoji {
+      font-size: 32px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .card-text {
+      text-align: left;
+      flex: 1;
+    }
+
+    .card-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: #2d1a00;
+      margin-bottom: 2px;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      color: #b07040;
+    }
+
+    .card-arrow {
+      font-size: 20px;
+      color: #e0c090;
+      transition: transform 0.18s, color 0.18s;
+    }
+
+    .card:hover .card-arrow {
+      color: var(--orange);
+      transform: translateX(4px);
+    }
+
+    .footer {
+      font-size: 11px;
+      color: #c8a878;
+      margin-top: 1.8rem;
+    }
+
+    /* カード入場アニメーション */
+    .card {
+      opacity: 0;
+      animation: slideUp 0.4s forwards;
+    }
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.22s; }
+    .card:nth-child(3) { animation-delay: 0.34s; }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <span class="emoji-top">🍔</span>
+    <h1>どこから頼む？</h1>
+    <p class="subtitle">タップするとそのサービスへ移動します</p>
+
+    <div class="cards">
+
+      <a href="https://www.ubereats.com/jp" class="card uber" target="_blank" rel="noopener">
+        <span class="card-emoji">🛵</span>
+        <div class="card-text">
+          <p class="card-name">Uber Eats</p>
+          <p class="card-desc">レストランから自宅へ素早くお届け</p>
+        </div>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <a href="https://demae-can.com/" class="card demae" target="_blank" rel="noopener">
+        <span class="card-emoji">🍱</span>
+        <div class="card-text">
+          <p class="card-name">出前館</p>
+          <p class="card-desc">全国対応・多彩なジャンルから選べる</p>
+        </div>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <a href="https://rocketnow.jp/" class="card rocket" target="_blank" rel="noopener">
+        <span class="card-emoji">🚀</span>
+        <div class="card-text">
+          <p class="card-name">Rocket Now</p>
+          <p class="card-desc">スピード配達・今すぐ届く</p>
+        </div>
+        <span class="card-arrow">→</span>
+      </a>
+
+    </div>
+
+    <p class="footer">タップすると各サービスの公式サイトへ移動します</p>
+  </div>
+</body>
+</html>
